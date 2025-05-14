@@ -5,6 +5,7 @@ import pool from "./config/db.js";
 import router from './routes/userRoutes.js'
 import errorHandling from "./middlewares/errorHandler.js";
 import createCompanyTable from "./data/createCompanyTable.js";
+import createUserTable from "./data/createUserTable.js";
 
 dotenv.config();
 
@@ -24,6 +25,7 @@ app.use(errorHandling);
 
 // Create Table
 //createCompanyTable();
+//createUserTable();
 
 
 //testing
