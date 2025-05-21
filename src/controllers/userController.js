@@ -1,4 +1,4 @@
-import { getAllUsersService , createUserService,getUserByIdService, updateUserService, deleteUserService } from "../models/userModel.js";
+import { getAllUsersService ,getUserAuthService, createUserService,getUserByIdService, updateUserService, deleteUserService } from "../models/userModel.js";
 import handleResponse from "../middlewares/handleResponse.js";
 
 export const getAllUsers = async (req,res,next) => {
@@ -11,6 +11,16 @@ export const getAllUsers = async (req,res,next) => {
     }
 };
 
+export const getUserAuth = async (req,res,next) => {
+    try{
+        const user= await getUserAuthService(req.params.username,req.params.password);
+        if(!user) return handleResponse(res,404,"user not found");
+        handleResponse(res,200,"Fetch Successfully",user);
+    }
+    catch(err){
+        next(err)
+    }
+};
 
 export const createUser = async (req,res,next) => {
     const {cid,username,password,type,permission}= req.body;
@@ -33,6 +43,7 @@ export const getAllUserById = async (req,res,next) => {
         next(err)
     }
 };
+
 export const updateUser = async (req,res,next) => {
      const {password}= req.body;
     try{

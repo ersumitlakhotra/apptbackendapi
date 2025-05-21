@@ -1,8 +1,10 @@
 import express from "express";
-import { getAllUsers, createUser, getAllUserById, updateUser,deleteUser } from "../controllers/userController.js";
+import { getAllUsers,getUserAuth, createUser, getAllUserById, updateUser,deleteUser } from "../controllers/userController.js";
 import { getAllCompany , getCompanyById, createCompany,updateCompany} from "../controllers/companyController.js";
 
 const router = express.Router();
+
+router.get("/user/auth/:username/:password",getUserAuth);
 
 router.get("/user",getAllUsers);
 router.post("/user",createUser);
