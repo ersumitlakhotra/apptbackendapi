@@ -6,6 +6,7 @@ import router from './routes/userRoutes.js'
 import errorHandling from "./middlewares/errorHandler.js";
 import createCompanyTable from "./data/createCompanyTable.js";
 import createUserTable from "./data/createUserTable.js";
+import createOrderTable from "./data/createOrderTable.js"
 
 dotenv.config();
 
@@ -26,6 +27,7 @@ app.use(errorHandling);
 // Create Table
 //createCompanyTable();
 //createUserTable();
+//createOrderTable();
 
 
 //testing

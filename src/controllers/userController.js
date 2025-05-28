@@ -3,7 +3,7 @@ import handleResponse from "../middlewares/handleResponse.js";
 
 export const getAllUsers = async (req,res,next) => {
     try{
-        const user= await getAllUsersService();
+        const user= await getAllUsersService(req.params.cid);
         handleResponse(res,200,"Fetch Successfully",user);
     }
     catch(err){
@@ -23,9 +23,9 @@ export const getUserAuth = async (req,res,next) => {
 };
 
 export const createUser = async (req,res,next) => {
-    const {cid,username,password,type,permission}= req.body;
+    const {username,password,role,permission,email,cell,rating}= req.body;
     try{
-        const user= await createUserService(cid,username,password,type,permission);
+        const user= await createUserService(req.params.cid,username,password,role,permission,email,cell,rating);
         handleResponse(res,201,"Created Successfully",user)
     }
     catch(err){
@@ -35,7 +35,7 @@ export const createUser = async (req,res,next) => {
 
 export const getAllUserById = async (req,res,next) => {
     try{
-        const user= await getUserByIdService(req.params.id);
+        const user= await getUserByIdService(req.params.cid,req.params.id);
         if(!user) return handleResponse(res,404,"user not found");
         handleResponse(res,200,"Fetch via Id Successfully",user);
     }
@@ -47,7 +47,7 @@ export const getAllUserById = async (req,res,next) => {
 export const updateUser = async (req,res,next) => {
      const {password}= req.body;
     try{
-        const user= await updateUserService(req.params.id,password);
+        const user= await updateUserService(req.params.cid,req.params.id,password);
         if(!user) return handleResponse(res,404,"user not found");
         handleResponse(res,200,"Updated Successfully",user);
     }
@@ -59,7 +59,7 @@ export const updateUser = async (req,res,next) => {
 
 export const deleteUser = async (req,res,next) => {  
     try{
-        const user= await deleteUserService(req.params.id);
+        const user= await deleteUserService(req.params.cid,req.params.id);
         if(!user) return handleResponse(res,404,"user not found");
         handleResponse(res,200,"Deleted Successfully",user);
     }
