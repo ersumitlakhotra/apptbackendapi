@@ -16,8 +16,8 @@ export const getUserByIdService = async (cid,id) => {
     const result =await pool.query(`SELECT * FROM ${tableName} where id=$1 and cid=$2`,[id,cid]);
     return result.rows[0];
 };
-export const createUserService = async (cid,username,password,role,permission,email,cell,rating) => {
-    const result =await pool.query(`INSERT INTO ${tableName} (cid,username,password,role,permission,active,createdat,modifiedat,email,cell,rating) VALUES ($1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11) RETURNING *`,[cid,username,password,role,permission,true,new Date(),new Date(),email,cell,rating]);
+export const createUserService = async (cid,username,password,role,permission,email,cell,rating,status,profilepic,fullname,accounttype) => {
+    const result =await pool.query(`INSERT INTO ${tableName} (cid,username,password,role,permission,status,createdat,modifiedat,email,cell,rating,profilepic,fullname,accounttype) VALUES ($1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11,$12,$13,$14) RETURNING *`,[cid,username,password,role,permission,status,new Date(),new Date(),email,cell,rating,profilepic,fullname,accounttype]);
     return result.rows[0];
 };
 export const updateUserService = async (cid,id,password) => {

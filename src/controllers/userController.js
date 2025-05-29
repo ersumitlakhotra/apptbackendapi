@@ -23,9 +23,9 @@ export const getUserAuth = async (req,res,next) => {
 };
 
 export const createUser = async (req,res,next) => {
-    const {username,password,role,permission,email,cell,rating}= req.body;
+    const {username,password,role,permission,email,cell,rating,status,profilepic,fullname,accounttype}= req.body;
     try{
-        const user= await createUserService(req.params.cid,username,password,role,permission,email,cell,rating);
+        const user= await createUserService(req.params.cid,username,password,role,permission,email,cell,rating,status,profilepic,fullname,accounttype);
         handleResponse(res,201,"Created Successfully",user)
     }
     catch(err){
