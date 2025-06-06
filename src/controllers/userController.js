@@ -45,9 +45,9 @@ export const getAllUserById = async (req,res,next) => {
 };
 
 export const updateUser = async (req,res,next) => {
-     const {password}= req.body;
+    const { password, role, permission, email, cell, rating, status, profilepic, fullname, accounttype }= req.body;
     try{
-        const user= await updateUserService(req.params.cid,req.params.id,password);
+        const user = await updateUserService(req.params.cid, req.params.id, password, role, permission, email, cell, rating, status, profilepic, fullname, accounttype);
         if(!user) return handleResponse(res,404,"user not found");
         handleResponse(res,200,"Updated Successfully",user);
     }
