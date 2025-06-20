@@ -18,7 +18,9 @@ const createCompanyTable = async () => {
     createdat timestamp with time zone,
     active boolean DEFAULT true,
     modifiedat timestamp with time zone,
-    CONSTRAINT company_pkey PRIMARY KEY (id)
+    CONSTRAINT company_pkey PRIMARY KEY (id),
+    CONSTRAINT company_cell_key UNIQUE (cell),
+    CONSTRAINT company_email_key UNIQUE (email)
 )
 
 TABLESPACE pg_default;

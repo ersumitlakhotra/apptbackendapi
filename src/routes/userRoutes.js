@@ -3,6 +3,7 @@ import { getAllUsers,getUserAuth, createUser, getAllUserById, updateUser,deleteU
 import { getAllCompany , getCompanyById, createCompany,updateCompany} from "../controllers/companyController.js";
 import { createOrder, getAllOrder, getOrderById, updateOrder } from "../controllers/orderController.js";
 import { getAllRoles} from "../controllers/roleController.js"
+import { createServices, getAllServices, getAllServicesById, updateServices } from "../controllers/servicesController.js";
 
 const router = express.Router();
 
@@ -19,12 +20,18 @@ router.get("/company/:id",getCompanyById);
 router.post("/company",createCompany);
 router.put("/company/:id",updateCompany);
 
-router.get("/order",getAllOrder);
-router.get("/order/:id",getOrderById);
-router.post("/order",createOrder);
-router.put("/order/:id",updateOrder);
+router.get("/order/:cid",getAllOrder);
+router.get("/order/:cid/:id",getOrderById);
+router.post("/order/:cid",createOrder);
+router.put("/order/:cid/:id",updateOrder);
 
 
 router.get("/roles/:cid",getAllRoles);
+
+
+router.get("/services/:cid", getAllServices);
+router.post("/services/:cid", createServices);
+router.get("/services/:cid/:id", getAllServicesById);
+router.put("/services/:cid/:id", updateServices);
 
 export default router;

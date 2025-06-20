@@ -4,7 +4,7 @@ import { getAllOrderService, getOrderByIdService, createOrderService,updateOrder
 
 export const getAllOrder = async (req,res,next) => {
     try{
-        const data= await getAllOrderService();
+        const data = await getAllOrderService(req.params.cid);
         handleResponse(res,200,"Fetch Successfully",data);
     }
     catch(err){
@@ -15,7 +15,7 @@ export const getAllOrder = async (req,res,next) => {
 
 export const getOrderById = async (req,res,next) => {
     try{
-        const data= await getOrderByIdService(req.params.id);
+        const data = await getOrderByIdService(req.params.cid,req.params.id);
         if(!data) return handleResponse(res,404,"user not found");
         handleResponse(res,200,"Fetch via Id Successfully",data);
     }
@@ -25,9 +25,9 @@ export const getOrderById = async (req,res,next) => {
 };
 
 export const createOrder = async (req,res,next) => {
-    const {cid, order_id, customer_name, customer_email, customer_phone, status, services, price, trndate, clients,assignedto}= req.body;
+    const { customer_name, customer_email, customer_phone, status, services, price, trndate, clients,assignedto}= req.body;
     try{
-        const data= await createOrderService(cid, order_id, customer_name, customer_email, customer_phone, status, services, price, trndate, clients,assignedto);
+        const data = await createOrderService(req.params.cid, customer_name, customer_email, customer_phone, status, services, price, trndate, clients,assignedto);
         handleResponse(res,201,"Created Successfully",data)
     }
     catch(err){
@@ -38,7 +38,7 @@ export const createOrder = async (req,res,next) => {
 export const updateOrder = async (req,res,next) => {
     const {customer_name, customer_email, customer_phone, status, services, price, trndate, clients,assignedto,modifiedat}= req.body;
    try{
-       const data= await updateOrderService(req.params.id,customer_name, customer_email, customer_phone, status, services, price, trndate, clients,assignedto,modifiedat);
+       const data = await updateOrderService(req.params.cid,req.params.id,customer_name, customer_email, customer_phone, status, services, price, trndate, clients,assignedto,modifiedat);
        if(!data) return handleResponse(res,404,"order not found");
        handleResponse(res,200,"Updated Successfully",data);
    }
