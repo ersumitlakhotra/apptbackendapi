@@ -4,6 +4,7 @@ import { getAllCompany , getCompanyById, createCompany,updateCompany} from "../c
 import { createOrder, getAllOrder, getOrderById, updateOrder } from "../controllers/orderController.js";
 import { getAllRoles} from "../controllers/roleController.js"
 import { createServices, getAllServices, getAllServicesById, updateServices } from "../controllers/servicesController.js";
+import { createEvent, getAllEvent, getAllEventById, updateEvent } from "../controllers/eventController.js";
 
 const router = express.Router();
 
@@ -26,12 +27,18 @@ router.post("/order/:cid",createOrder);
 router.put("/order/:cid/:id",updateOrder);
 
 
-router.get("/roles/:cid",getAllRoles);
+router.get("/roles/:cid", getAllRoles);
 
 
 router.get("/services/:cid", getAllServices);
 router.post("/services/:cid", createServices);
 router.get("/services/:cid/:id", getAllServicesById);
 router.put("/services/:cid/:id", updateServices);
+
+
+router.get("/event/:cid", getAllEvent);
+router.post("/event/:cid", createEvent);
+router.get("/event/:cid/:id", getAllEventById);
+router.put("/event/:cid/:id", updateEvent);
 
 export default router;

@@ -5,8 +5,8 @@ const createServicesTable = async () => {
     const queryText = `
 CREATE TABLE IF NOT EXISTS public.services
 (
-    id integer NOT NULL GENERATED ALWAYS AS IDENTITY ( INCREMENT 1 START 1 MINVALUE 1 MAXVALUE 2147483647 CACHE 1 ),
-    cid integer,
+    id bigint NOT NULL GENERATED ALWAYS AS IDENTITY ( INCREMENT 1 START 1 MINVALUE 1 MAXVALUE 9223372036854775807 CACHE 1 ),
+    cid bigint,
     title text COLLATE pg_catalog."default",
     createdat timestamp with time zone,
     modifiedat timestamp with time zone,
