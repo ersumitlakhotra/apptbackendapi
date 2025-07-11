@@ -1,4 +1,4 @@
-import { getAllCompanyService , getCompanyByIdService, createCompanyService, updateCompanyService } from "../models/companyModel.js";
+import { getAllCompanyService, getCompanyByIdService, createCompanyService, updateCompanySocialService, updateCompanyBillingService, updateCompanyAddressInfoService, updateCompanyTimingService } from "../models/companyModel.js";
 import handleResponse from "../middlewares/handleResponse.js";
 
 
@@ -13,13 +13,13 @@ export const getAllCompany = async (req,res,next) => {
 };
 
 
-export const getCompanyById = async (req,res,next) => {
-    try{
-        const data= await getCompanyByIdService(req.params.id);
-        if(!data) return handleResponse(res,404,"user not found");
-        handleResponse(res,200,"Fetch via Id Successfully",data);
+export const getCompanyById = async (req, res, next) => {
+    try {
+        const data = await getCompanyByIdService(req.params.cid);
+        if (!data) return handleResponse(res, 404, "user not found");
+        handleResponse(res, 200, "Fetch via Id Successfully", data);
     }
-    catch(err){
+    catch (err) {
         next(err)
     }
 };
@@ -35,14 +35,47 @@ export const createCompany = async (req,res,next) => {
     }
 };
 
-export const updateCompany = async (req,res,next) => {
-    const {name, address, city, province, country, postal, email, cell, owner, ownercell,active}= req.body;
-   try{
-       const data= await updateCompanyService(req.params.id,name, address, city, province, country, postal, email, cell, owner, ownercell,active);
-       if(!data) return handleResponse(res,404,"user not found");
-       handleResponse(res,200,"Updated Successfully",data);
-   }
-   catch(err){
-       next(err)
-   }
+export const updateCompanyAddressInfo = async (req, res, next) => {
+    const { addressinfo } = req.body;
+    try {
+        const data = await updateCompanyAddressInfoService(req.params.cid, addressinfo);
+        if (!data) return handleResponse(res, 404, "user not found");
+        handleResponse(res, 200, "Updated Successfully", data);
+    }
+    catch (err) {
+        next(err)
+    }
+};
+export const updateCompanyBilling = async (req, res, next) => {
+    const { billinginfo } = req.body;
+    try {
+        const data = await updateCompanyBillingService(req.params.cid, billinginfo);
+        if (!data) return handleResponse(res, 404, "user not found");
+        handleResponse(res, 200, "Updated Successfully", data);
+    }
+    catch (err) {
+        next(err)
+    }
+};
+export const updateCompanySocial = async (req, res, next) => {
+    const { socialinfo } = req.body;
+    try {
+        const data = await updateCompanySocialService(req.params.cid, socialinfo);
+        if (!data) return handleResponse(res, 404, "user not found");
+        handleResponse(res, 200, "Updated Successfully", data);
+    }
+    catch (err) {
+        next(err)
+    }
+};
+export const updateCompanyTiming = async (req, res, next) => {
+    const { timinginfo } = req.body;
+    try {
+        const data = await updateCompanyTimingService(req.params.cid, timinginfo);
+        if (!data) return handleResponse(res, 404, "user not found");
+        handleResponse(res, 200, "Updated Successfully", data);
+    }
+    catch (err) {
+        next(err)
+    }
 };
