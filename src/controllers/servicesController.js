@@ -12,9 +12,9 @@ export const getAllServices = async (req, res, next) => {
 };
 
 export const createServices = async (req, res, next) => {
-    const { title, price, timing, status } = req.body;
+    const { name, price, timing, description, status } = req.body;
     try {
-        const user = await createServicesService(req.params.cid, title,price, timing, status);
+        const user = await createServicesService(req.params.cid, name, price, timing, description, status);
         handleResponse(res, 201, "Created Successfully", user)
     }
     catch (err) {
@@ -34,9 +34,9 @@ export const getAllServicesById = async (req, res, next) => {
 };
 
 export const updateServices = async (req, res, next) => {
-    const { title,price, timing, status } = req.body;
+    const { name, price, timing, description, status } = req.body;
     try {
-        const user = await updateServicesService(req.params.cid, req.params.id, title, price, timing, status);
+        const user = await updateServicesService(req.params.cid, req.params.id, name, price, timing, description,status);
         if (!user) return handleResponse(res, 404, "user not found");
         handleResponse(res, 200, "Updated Successfully", user);
     }
