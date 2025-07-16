@@ -23,9 +23,9 @@ export const getUserAuth = async (req,res,next) => {
 };
 
 export const createUser = async (req,res,next) => {
-    const {username,password,role,permission,email,cell,rating,status,profilepic,fullname,accounttype}= req.body;
+    const {password,role,permission,email,cell,rating,status,profilepic,fullname,accounttype,address,gender}= req.body;
     try{
-        const user= await createUserService(req.params.cid,username,password,role,permission,email,cell,rating,status,profilepic,fullname,accounttype);
+        const user = await createUserService(req.params.cid, password, role, permission, email, cell, rating, status, profilepic, fullname, accounttype, address, gender);
         handleResponse(res,201,"Created Successfully",user)
     }
     catch(err){
@@ -45,9 +45,9 @@ export const getAllUserById = async (req,res,next) => {
 };
 
 export const updateUser = async (req,res,next) => {
-    const { password, role, permission, email, cell, rating, status, profilepic, fullname, accounttype }= req.body;
+    const { password, role, permission, email, cell, rating, status, profilepic, fullname, accounttype, address, gender }= req.body;
     try{
-        const user = await updateUserService(req.params.cid, req.params.id, password, role, permission, email, cell, rating, status, profilepic, fullname, accounttype);
+        const user = await updateUserService(req.params.cid, req.params.id, password, role, permission, email, cell, rating, status, profilepic, fullname, accounttype, address, gender);
         if(!user) return handleResponse(res,404,"user not found");
         handleResponse(res,200,"Updated Successfully",user);
     }
