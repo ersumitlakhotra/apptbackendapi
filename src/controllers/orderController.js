@@ -25,9 +25,9 @@ export const getOrderById = async (req,res,next) => {
 };
 
 export const createOrder = async (req,res,next) => {
-    const { customer_name, customer_email, customer_phone, status, services, price, trndate, clients,assignedto}= req.body;
+    const { customerinfo, serviceinfo, price, status, trndate, assignedto, slot}= req.body;
     try{
-        const data = await createOrderService(req.params.cid, customer_name, customer_email, customer_phone, status, services, price, trndate, clients,assignedto);
+        const data = await createOrderService(req.params.cid, customerinfo, serviceinfo, price, status, trndate, assignedto, slot);
         handleResponse(res,201,"Created Successfully",data)
     }
     catch(err){
@@ -36,9 +36,9 @@ export const createOrder = async (req,res,next) => {
 };
 
 export const updateOrder = async (req,res,next) => {
-    const {customer_name, customer_email, customer_phone, status, services, price, trndate, clients,assignedto,modifiedat}= req.body;
+    const { customerinfo, serviceinfo, price, status, trndate, assignedto, slot }= req.body;
    try{
-       const data = await updateOrderService(req.params.cid,req.params.id,customer_name, customer_email, customer_phone, status, services, price, trndate, clients,assignedto,modifiedat);
+       const data = await updateOrderService(req.params.cid, req.params.id, customerinfo, serviceinfo, price, status, trndate, assignedto, slot);
        if(!data) return handleResponse(res,404,"order not found");
        handleResponse(res,200,"Updated Successfully",data);
    }
