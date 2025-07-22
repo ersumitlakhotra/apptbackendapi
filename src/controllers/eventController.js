@@ -12,9 +12,9 @@ export const getAllEvent = async (req, res, next) => {
 };
 
 export const createEvent = async (req, res, next) => {
-    const { title, description, startdate,enddate,services,discounttype,discount, status } = req.body;
+    const { title, description, startdate, enddate, serviceinfo,discount } = req.body;
     try {
-        const user = await createEventService(req.params.cid, title, description, startdate, enddate, services, discounttype, discount, status);
+        const user = await createEventService(req.params.cid, title, description, startdate, enddate, serviceinfo, discount);
         handleResponse(res, 201, "Created Successfully", user)
     }
     catch (err) {
@@ -34,9 +34,9 @@ export const getAllEventById = async (req, res, next) => {
 };
 
 export const updateEvent = async (req, res, next) => {
-    const { title, description, startdate, enddate, services, discounttype, discount, status } = req.body;
+    const { title, description, startdate, enddate, serviceinfo, discount } = req.body;
     try {
-        const user = await updateEventService(req.params.cid, req.params.id, title, description, startdate, enddate, services, discounttype, discount, status);
+        const user = await updateEventService(req.params.cid, req.params.id, title, description, startdate, enddate, serviceinfo, discount);
         if (!user) return handleResponse(res, 404, "user not found");
         handleResponse(res, 200, "Updated Successfully", user);
     }
