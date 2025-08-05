@@ -13,8 +13,8 @@ export const createCompanyService = async (name, address, city, province, countr
     return result.rows[0];
 };
 
-export const updateCompanyAddressInfoService = async (cid, addressinfo) => {
-    const result = await pool.query(`UPDATE company set addressinfo=$2, modifiedat=$3 where id=$1 RETURNING *`, [cid, addressinfo,new Date()]);
+export const updateCompanyAddressInfoService = async (cid, name, cell, addressinfo) => {
+    const result = await pool.query(`UPDATE company set name=$2,cell=$3,addressinfo=$4, modifiedat=$5 where id=$1 RETURNING *`, [cid, name, cell, addressinfo,new Date()]);
     return result.rows[0];
 };
 export const updateCompanyBillingService = async (cid, billinginfo) => {

@@ -36,9 +36,9 @@ export const createCompany = async (req,res,next) => {
 };
 
 export const updateCompanyAddressInfo = async (req, res, next) => {
-    const { addressinfo } = req.body;
+    const {name,cell, addressinfo } = req.body;
     try {
-        const data = await updateCompanyAddressInfoService(req.params.cid, addressinfo);
+        const data = await updateCompanyAddressInfoService(req.params.cid, name, cell, addressinfo);
         if (!data) return handleResponse(res, 404, "user not found");
         handleResponse(res, 200, "Updated Successfully", data);
     }
