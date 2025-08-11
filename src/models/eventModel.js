@@ -19,11 +19,11 @@ export const getEventByIdService = async (cid, id) => {
     const result = await pool.query(`SELECT * FROM ${tableName} where id=$1 and cid=$2`, [id, cid]);
     return result.rows[0];
 };
-export const createEventService = async (cid, title, description, startdate, enddate, serviceinfo,  discount) => {
-    const result = await pool.query(`INSERT INTO ${tableName} (cid,title, description, startdate, enddate,serviceinfo,discount,createdat,modifiedat) VALUES ($1,$2,$3,$4,$5,$6,$7,$8,$9) RETURNING *`, [cid, title, description, startdate, enddate, serviceinfo,  discount,  new Date(), new Date()]);
+export const createEventService = async (cid, title, description, startdate, enddate, serviceinfo, discount, coupon, price, total) => {
+  const result = await pool.query(`INSERT INTO ${tableName} (cid,title, description, startdate, enddate,serviceinfo,discount,createdat,modifiedat,coupon, price,total) VALUES ($1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11,$12) RETURNING *`, [cid, title, description, startdate, enddate, serviceinfo, discount, new Date(), new Date(), coupon, price, total]);
     return result.rows[0];
 };
-export const updateEventService = async (cid, id, title, description, startdate, enddate, serviceinfo, discount) => {
-    const result = await pool.query(`UPDATE ${tableName} set title=$3,description=$4, startdate=$5, enddate=$6, serviceinfo=$7,  discount=$8, modifiedat=$9 where id=$2 and cid=$1 RETURNING *`, [cid, id, title, description, startdate, enddate, serviceinfo,  discount,  new Date()]);
+export const updateEventService = async (cid, id, title, description, startdate, enddate, serviceinfo, discount, coupon, price, total) => {
+  const result = await pool.query(`UPDATE ${tableName} set title=$3,description=$4, startdate=$5, enddate=$6, serviceinfo=$7,  discount=$8, modifiedat=$9,coupon=$10,price=$11,total=$12 where id=$2 and cid=$1 RETURNING *`, [cid, id, title, description, startdate, enddate, serviceinfo, discount, new Date(), coupon, price, total]);
     return result.rows[0];
 };
