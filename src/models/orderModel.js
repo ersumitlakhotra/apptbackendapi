@@ -9,11 +9,11 @@ export const getOrderByIdService = async (cid,id) => {
     const result = await pool.query(`SELECT * FROM ${tableName} where id=$1 and cid=$2`, [id, cid]);
     return result.rows[0];
 };
-export const createOrderService = async (cid, customerinfo, serviceinfo, price, status, trndate, assignedto, slot, discount, tax, total, coupon) => {
-    const result = await pool.query(`INSERT INTO ${tableName} (cid, customerinfo, serviceinfo, price, status, trndate, assignedto, slot,createdat,modifiedat,discount,tax,total,coupon) VALUES ($1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11,$12,$13,$14) RETURNING *`, [cid, customerinfo, serviceinfo, price, status, trndate, assignedto, slot, new Date(), new Date(), discount, tax, total, coupon]);
+export const createOrderService = async (cid, customerinfo, serviceinfo, price, status, trndate, assignedto, slot, discount, tax, total, coupon, taxamount) => {
+    const result = await pool.query(`INSERT INTO ${tableName} (cid, customerinfo, serviceinfo, price, status, trndate, assignedto, slot,createdat,modifiedat,discount,tax,total,coupon,taxamount) VALUES ($1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11,$12,$13,$14,$15) RETURNING *`, [cid, customerinfo, serviceinfo, price, status, trndate, assignedto, slot, new Date(), new Date(), discount, tax, total, coupon, taxamount]);
     return result.rows[0];
 };
-export const updateOrderService = async (cid, id, customerinfo, serviceinfo, price, status, trndate, assignedto, slot, discount, tax, total, coupon) => {
-    const result = await pool.query(`UPDATE ${tableName} set  customerinfo=$3, serviceinfo=$4, price=$5, status=$6, trndate=$7, assignedto=$8, slot=$9, modifiedat=$10 , discount=$11 , tax=$12 , total=$13 , coupon=$14 where id=$2 and cid=$1  RETURNING *`, [cid, id, customerinfo, serviceinfo, price, status, trndate, assignedto, slot, new Date(), discount, tax, total, coupon]);
+export const updateOrderService = async (cid, id, customerinfo, serviceinfo, price, status, trndate, assignedto, slot, discount, tax, total, coupon,taxamount) => {
+    const result = await pool.query(`UPDATE ${tableName} set  customerinfo=$3, serviceinfo=$4, price=$5, status=$6, trndate=$7, assignedto=$8, slot=$9, modifiedat=$10 , discount=$11 , tax=$12 , total=$13 , coupon=$14, taxamount=$15  where id=$2 and cid=$1  RETURNING *`, [cid, id, customerinfo, serviceinfo, price, status, trndate, assignedto, slot, new Date(), discount, tax, total, coupon,taxamount]);
     return result.rows[0];
 };
