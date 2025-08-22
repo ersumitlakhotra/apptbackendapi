@@ -6,6 +6,7 @@ import { getAllRoles} from "../controllers/roleController.js"
 import { createServices, getAllServices, getAllServicesById, updateServices } from "../controllers/servicesController.js";
 import { createEvent, getAllEvent, getAllEventById, updateEvent } from "../controllers/eventController.js";
 import { createLogo, getAllLogo, deleteLogo, updateLogo } from "../controllers/logoController.js"
+import { getAllExpense, createExpense, getAllExpenseById, updateExpense, deleteExpense } from "../controllers/expenseController.js";
 
 const router = express.Router();
 
@@ -51,5 +52,10 @@ router.post("/logo/:cid", createLogo);
 router.put("/logo/:cid/:id", updateLogo );
 router.delete("/logo/:cid", deleteLogo);
 
+router.get("/expense/:cid", getAllExpense);
+router.post("/expense/:cid", createExpense);
+router.get("/expense/:cid/:id", getAllExpenseById);
+router.put("/expense/:cid/:id", updateExpense);
+router.delete("/expense/:cid/:id", deleteExpense);
 
 export default router;
