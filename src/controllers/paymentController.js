@@ -12,9 +12,9 @@ export const getAllPayment = async (req, res, next) => {
 };
 
 export const createPayment = async (req, res, next) => {
-    const { etype, trndate, assignedto, notes, netamount, grossamount, taxamount, name, quantity, ptype } = req.body;
+    const { etype, trndate, assignedto, notes, netamount, grossamount, taxamount, name, quantity, ptype,fromdate,todate } = req.body;
     try {
-        const user = await createPaymentService(req.params.cid, etype, trndate, assignedto, notes, netamount, grossamount, taxamount, name, quantity, ptype);
+        const user = await createPaymentService(req.params.cid, etype, trndate, assignedto, notes, netamount, grossamount, taxamount, name, quantity, ptype, fromdate, todate);
         handleResponse(res, 201, "Created Successfully", user)
     }
     catch (err) {
@@ -34,9 +34,9 @@ export const getAllPaymentById = async (req, res, next) => {
 };
 
 export const updatePayment = async (req, res, next) => {
-    const { etype, trndate, assignedto, notes, netamount, grossamount, taxamount, name, quantity, ptype } = req.body;
+    const { etype, trndate, assignedto, notes, netamount, grossamount, taxamount, name, quantity, ptype, fromdate, todate } = req.body;
     try {
-        const user = await updatePaymentService(req.params.cid, req.params.id, etype, trndate, assignedto, notes, netamount, grossamount, taxamount, name, quantity, ptype);
+        const user = await updatePaymentService(req.params.cid, req.params.id, etype, trndate, assignedto, notes, netamount, grossamount, taxamount, name, quantity, ptype, fromdate, todate);
         if (!user) return handleResponse(res, 404, "user not found");
         handleResponse(res, 200, "Updated Successfully", user);
     }

@@ -41,7 +41,7 @@ router.get("/services/:cid/:id", getAllServicesById);
 router.put("/services/:cid/:id", updateServices);
 
 
-router.get("/event/:cid", getAllEvent);
+router.get("/event/:cid/:date", getAllEvent);
 router.post("/event/:cid", createEvent);
 router.get("/event/:cid/:id", getAllEventById);
 router.put("/event/:cid/:id", updateEvent);

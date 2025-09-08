@@ -3,7 +3,7 @@ import { createEventService, getAllEventService, getEventByIdService, updateEven
 
 export const getAllEvent = async (req, res, next) => {
     try {
-        const user = await getAllEventService(req.params.cid);
+        const user = await getAllEventService(req.params.cid, req.params.date);
         handleResponse(res, 200, "Fetch Successfully", user);
     }
     catch (err) {

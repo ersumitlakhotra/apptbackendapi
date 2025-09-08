@@ -2,11 +2,11 @@ import pool from "../config/db.js";
 
 const tableName = "public.\"event\"";
 
-export const getAllEventService = async (cid) => {
+export const getAllEventService = async (cid, CURRENT_DATE) => {
     const result = await pool.query(`SELECT *,CASE
-  WHEN CURRENT_DATE between startdate AND enddate THEN 'Live'
-  WHEN startdate < CURRENT_DATE AND enddate < CURRENT_DATE   THEN 'Past'
-  WHEN startdate > CURRENT_DATE AND enddate > CURRENT_DATE  THEN 'Upcoming'
+  WHEN ${CURRENT_DATE} between startdate AND enddate THEN 'Live'
+  WHEN startdate < ${CURRENT_DATE} AND enddate < ${CURRENT_DATE}   THEN 'Past'
+  WHEN startdate > ${CURRENT_DATE} AND enddate > ${CURRENT_DATE}  THEN 'Upcoming'
 ELSE
   'Past'
 END 
