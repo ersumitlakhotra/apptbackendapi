@@ -7,6 +7,7 @@ import { createServices, getAllServices, getAllServicesById, updateServices } fr
 import { createEvent, getAllEvent, getAllEventById, updateEvent } from "../controllers/eventController.js";
 import { createLogo, getAllLogo, deleteLogo, updateLogo } from "../controllers/logoController.js"
 import { getAllPayment, createPayment, getAllPaymentById, updatePayment, deletePayment } from "../controllers/paymentController.js";
+import { getAllLogs, createLogs,updateLogs,getAllLogsById } from "../controllers/logsController.js";
 
 const router = express.Router();
 
@@ -57,5 +58,12 @@ router.post("/payment/:cid", createPayment);
 router.get("/payment/:cid/:id", getAllPaymentById);
 router.put("/payment/:cid/:id", updatePayment);
 router.delete("/payment/:cid/:id", deletePayment);
+
+
+
+router.get("/logs/:cid", getAllLogs);
+router.post("/logs/:cid", createLogs);
+router.get("/logs/:cid/:id", getAllLogsById);
+router.put("/logs/:cid/:id", updateLogs );
 
 export default router;
