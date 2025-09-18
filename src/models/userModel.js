@@ -25,7 +25,7 @@ export const createUserService = async (cid, password, role, permission, email, 
     return result.rows[0];
 };
 export const updateUserService = async (cid, id, password, role, permission, email, cell, rating, status, profilepic, fullname, accounttype, address, gender) => {
-    const result = await pool.query(`UPDATE ${tableName} set password=$3,role=$4,permission=$5,email=$6, cell=$7, rating=$8, status=$9, profilepic=$10, fullname=$11, accounttype=$12, address=$13, gender=$14 where id=$2 and cid=$1 RETURNING *`, [cid, id, password, role, permission, email, cell, rating, status, profilepic, fullname, accounttype, address, gender]);
+    const result = await pool.query(`UPDATE ${tableName} set password=$3,role=$4,permission=$5,email=$6, cell=$7, rating=$8, status=$9, profilepic=$10, fullname=$11, accounttype=$12, address=$13, gender=$14,modifiedat=$15 where id=$2 and cid=$1 RETURNING *`, [cid, id, password, role, permission, email, cell, rating, status, profilepic, fullname, accounttype, address, gender, new Date()]);
     return result.rows[0];
 };
 export const deleteUserService = async (cid,id) => {
