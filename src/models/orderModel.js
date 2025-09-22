@@ -9,8 +9,8 @@ export const getOrderByIdService = async (cid,id) => {
     const result = await pool.query(`SELECT * FROM ${tableName} where id=$1 and cid=$2`, [id, cid]);
     return result.rows[0];
 };
-export const createOrderService = async (cid, customerinfo, serviceinfo, price, status, trndate, assignedto, slot, discount, tax, total, coupon, taxamount) => {
-    const result = await pool.query(`INSERT INTO ${tableName} (cid, customerinfo, serviceinfo, price, status, trndate, assignedto, slot,createdat,modifiedat,discount,tax,total,coupon,taxamount) VALUES ($1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11,$12,$13,$14,$15) RETURNING *`, [cid, customerinfo, serviceinfo, price, status, trndate, assignedto, slot, new Date(), new Date(), discount, tax, total, coupon, taxamount]);
+export const createOrderService = async (cid, customerinfo, serviceinfo, price, status, trndate, assignedto, slot, discount, tax, total, coupon, taxamount,bookedvia) => {
+    const result = await pool.query(`INSERT INTO ${tableName} (cid, customerinfo, serviceinfo, price, status, trndate, assignedto, slot,createdat,modifiedat,discount,tax,total,coupon,taxamount,bookedvia) VALUES ($1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11,$12,$13,$14,$15,$16) RETURNING *`, [cid, customerinfo, serviceinfo, price, status, trndate, assignedto, slot, new Date(), new Date(), discount, tax, total, coupon, taxamount, bookedvia]);
     return result.rows[0];
 };
 export const updateOrderService = async (cid, id, customerinfo, serviceinfo, price, status, trndate, assignedto, slot, discount, tax, total, coupon,taxamount) => {
